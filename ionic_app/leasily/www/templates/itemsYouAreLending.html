@@ -1,0 +1,11 @@
+<ion-view title="Items you are lending" id="page4">
+  <ion-content padding="true" class="has-header">
+    <ion-list id="itemsYouAreLending-list7" class="manual-list-fullwidth">
+      <ion-item class="item-thumbnail-left" id="itemsYouAreLending-list-item21" ui-sref="tabsController.itemDescription({&quot;item_id&quot;:&quot;{item.id}&quot;})" ng-repeat="item in items_lending" ng-show="item.renters_name == 'Steve Rubin'">
+        <img src="{{item.pictureURL}}">
+        <h2>{{item.name}}</h2>
+        <p>You are lending this item, {{item.price}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

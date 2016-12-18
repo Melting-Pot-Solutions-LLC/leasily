@@ -1,0 +1,27 @@
+<ion-view title="Item description" id="page9">
+  <ion-content padding="true" class="has-header">
+    <h3 id="itemDescription-heading9" style="color:#000000;text-align:center;">About the item</h3>
+    <div class="list card" id="itemDescription-card24">
+      <ion-item id="itemDescription-list-item24">{{item.name}}</ion-item>
+      <div class=" item item-image">
+        <img src="{{item.pictureURL}}" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      </div>
+      <div class="item item-body" id="itemDescription-list-item-container20">
+        <div id="itemDescription-markdown32" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;">{{item.description}}</p>
+        </div>
+        <p>
+          <a href="#" class="subdued">{{item.price}}</a>
+        </p>
+      </div>
+    </div>
+    <h3 id="itemDescription-heading10" style="color:#000000;text-align:center;">About the renter</h3>
+    <ion-list id="itemDescription-list8">
+      <ion-item class="item-thumbnail-left" id="itemDescription-list-item26">
+        <img src="{{item.renters_picture_url}}">
+        <h2>{{item.renters_name}}</h2>
+      </ion-item>
+    </ion-list>
+    <a ui-sref="tabsController.chat({&quot;conversation_partner&quot;:&quot;&quot;+item.renters_name+&quot;&quot;})" id="itemDescription-button11" class="button button-positive  button-block icon-left ion-ios-chatboxes">Start chatting with the owner</a>
+  </ion-content>
+</ion-view>
