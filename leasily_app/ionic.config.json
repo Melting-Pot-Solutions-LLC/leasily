@@ -1,0 +1,5 @@
+{
+  "name": "leasily_app",
+  "app_id": "739118569598109",
+"gulpStartupTasks": ["sass", "watch"]
+}

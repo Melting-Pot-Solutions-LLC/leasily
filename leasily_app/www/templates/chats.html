@@ -1,0 +1,10 @@
+<ion-view title="Chats" id="page11">
+  <ion-content padding="true" class="has-header">
+    <ion-list id="chats-list10">
+      <ion-item class="item-avatar" id="chats-list-item10" ui-sref="tabsController.chat_tab1({&quot;conversation_partner&quot;:&quot;&quot;+chat.name+&quot;&quot;})" ng-repeat="chat in chats">
+        <img src="{{chat.pictureURL}}">
+        <h2>{{chat.name}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
