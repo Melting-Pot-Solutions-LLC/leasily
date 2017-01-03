@@ -62,12 +62,21 @@ function ($scope, $stateParams) {
 
     $scope.logout = function()
     {
-        firebase.auth().signOut().then(function() {
-          // Sign-out successful.
-          console.log("successfully signed out");
-        }, function(error) {
-          // An error happened.
-          console.log("error siging out");
+        // firebase.auth().signOut().then(function() {
+        //   // Sign-out successful.
+        //   console.log("successfully signed out");
+        // }, function(error) {
+        //   // An error happened.
+        //   console.log("error siging out");
+        // });
+        facebookConnectPlugin.logout(
+        function()
+        {
+            console.log('successfully logged out');
+        }, 
+        function()
+        {
+            console.log('error logging out');
         });
     }
 
