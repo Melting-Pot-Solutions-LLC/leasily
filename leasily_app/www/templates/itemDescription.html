@@ -23,5 +23,55 @@
       </ion-item>
     </ion-list>
     <a ui-sref="tabsController.chat({&quot;conversation_partner&quot;:&quot;&quot;+item.renters_name+&quot;&quot;})" id="itemDescription-button11" class="button button-positive  button-block icon-left ion-ios-chatboxes">Start chatting with the owner</a>
+
+  <button class="button button-block button-royal" ng-click="rent_item()" >
+    Rent an item for $0.50
+  </button>
+  <div class="padding center">
+            <p ng-show="ResponseData.loading">
+              Loading...
+            </p>
+            <p ng-show="ResponseData.token">
+              Token: <strong>{{ResponseData.token}}</strong>
+            </p>
+            <p ng-show="ResponseData.paymentId">
+              Payment Id: <strong>{{ResponseData.paymentId}}</strong>
+            </p>
+          </div>
   </ion-content>
 </ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Pay with Card</h1>
+          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Name on Card</span>
+              <input ng-model="payment.name_on_card" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Card Number</span>
+              <input ng-model="payment.card_number" type="tel">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Expiration Month</span>
+              <input ng-model="payment.exp_month" type="tel">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Expiration Year</span>
+              <input ng-model="payment.exp_year" type="tel">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">CVC</span>
+              <input ng-model="payment.cvc" type="tel">
+            </label>
+            <button class="button button-full button-positive" ng-click="submit_payment(payment)">Submit payment</button>
+            <p>Don't worry! We are not going to share you credit/debit card information.</p>
+          </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

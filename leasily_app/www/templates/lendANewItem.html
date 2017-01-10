@@ -17,9 +17,10 @@
       </label>
     </form>
     <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
-      <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+      
+      <img id="image" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
     </div>
-    <button id="lendANewItem-button8" class="button button-calm  button-block">Add a photo</button>
+    <button id="lendANewItem-button8" class="button button-calm  button-block" ng-click="take_a_photo()">Add a photo</button>
     <button id="lendANewItem-button13" ng-click="submit_new_item()" class="button button-balanced  button-block">Submit</button>
   </ion-content>
 </ion-view>
