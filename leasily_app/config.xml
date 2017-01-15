@@ -9,6 +9,7 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <access origin="http://10.34.36.144:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -56,6 +57,8 @@
   <allow-navigation href="http://192.168.1.115:8100"/>
   <allow-navigation href="http://10.34.163.198:8100"/>
   <allow-navigation href="http://10.34.36.144:8100"/>
+  <allow-navigation href="http://10.34.36.144"/>
+  <allow-intent href="http://10.34.36.144:8100"/>
   <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
     <variable name="APP_ID" value="739118569598109"/>
     <variable name="APP_NAME" value="Leasily"/>

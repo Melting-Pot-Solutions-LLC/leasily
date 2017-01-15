@@ -82,10 +82,10 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams', '$rootScope', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams', '$rootScope', '$state', '$ionicModal',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $rootScope, $state, $q, $ionicLoading, $timeout) {
+function ($scope, $stateParams, $rootScope, $state, $q, $ionicLoading, $timeout, $ionicModal) {
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
@@ -93,54 +93,41 @@ var provider = new firebase.auth.FacebookAuthProvider();
     {
         'name': '',
         'email': '',
-        'profile_photo': 'https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png'
+        'profile_photo': 'https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png',
+        'phone_number': '8030000000'
     }
 
+    $scope.show_phone_input = false;
 
    $scope.anotherLogin = function() {
 
      console.log('button pressed');
-      facebookConnectPlugin.getLoginStatus(function(success){
-      if(success.status === 'connected'){
-        // The user is logged in and has authenticated your app, and response.authResponse supplies
-        // the user's ID, a valid access token, a signed request, and the time the access token
-        // and signed request each expire
+      facebookConnectPlugin.getLoginStatus(function(success)
+      {
+        if(success.status === 'connected'){
+        
+          console.log('getLoginStatus - ', success.status);
+          facebookConnectPlugin.api('/me?fields=email,name,picture.width(720).height(720)&access_token=' + success.authResponse.accessToken, null,
+        function (response) {
+                  console.log(JSON.stringify(response));
+
+                  $rootScope.user.name = response.name;
+                  $rootScope.user.email =  response.email;
+                  $rootScope.user.profile_photo = response.picture.data.url;
+
+        },
+        function (response) {
+          alert(response);
+        });
+
+        update_db_and_go_further();
+
+      }
+      else 
+      {
         console.log('getLoginStatus', success.status);
-
-
-// $http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: access_token, fields: "name,gender,location,picture", format: "json" }}).then(function(result) {
-//         var name = result.data.name;
-//         var gender = result.data.gender;
-//         var picture = result.data.picture;
-
-
-        facebookConnectPlugin.api('/me?fields=email,name,picture.width(720).height(720)&access_token=' + success.authResponse.accessToken, null,
-      function (response) {
-                console.log(JSON.stringify(response));
-
-                $rootScope.user.name = response.name;
-                $rootScope.user.email =  response.email;
-                $rootScope.user.profile_photo = response.picture.data.url;
-
-      },
-      function (response) {
-				alert(response);
-      });
-
-      } else {
-        // If (success.status === 'not_authorized') the user is logged in to Facebook,
-				// but has not authenticated your app
-        // Else the person is not logged into Facebook,
-				// so we're not sure if they are logged into this app or not.
-
-				console.log('getLoginStatus', success.status);
-
-		// 		$ionicLoading.show({
-        //   template: 'Logging in...'
-        // });
-
-				// Ask the permissions you need. You can learn more about
-				// FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
+        $scope.show_phone_input = true;
+        console.log('show_phone_input - ', $scope.show_phone_input);
         facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
 
       }
@@ -152,7 +139,7 @@ var provider = new firebase.auth.FacebookAuthProvider();
         // {
 
         // }
-        update_db_and_go_further();
+        // update_db_and_go_further();
 
   };
 
@@ -160,12 +147,30 @@ var provider = new firebase.auth.FacebookAuthProvider();
 var update_db_and_go_further = function()
 {
     console.log("went to update_db_and_go_further");
-    var updates =
+    var updates = {};
+
+    if($scope.show_phone_input)
+    {
+      var updates =
                 {
                     'pictureURL': $rootScope.user.profile_photo,
                     'email':  $rootScope.user.email,
-                    'name':  $rootScope.user.name
+                    'name':  $rootScope.user.name,
+                    'phone_number':  $rootScope.user.phone_number
+
                 };
+    }
+    else
+    {
+      var updates =
+                {
+                    'pictureURL': $rootScope.user.profile_photo,
+                    'email':  $rootScope.user.email,
+                    'name':  $rootScope.user.name,
+                    
+
+                };
+    }
     firebase.database().ref('/users/' + $rootScope.user.name).update(updates);
     $state.go('tabsController.itemsYouCanBorrow');
 }
@@ -194,9 +199,18 @@ var update_db_and_go_further = function()
       function (response) {
 				alert(response);
       });
+
+      
+
     // $ionicLoading.hide();
 
   };
+
+    $scope.assign_phone_and_proceed = function()
+    {
+        $rootScope.user.phone_number = $("phone_number").val();
+        update_db_and_go_further();
+    }
 
 
 

@@ -17,8 +17,22 @@
 
     <!--<button id="login-button10" ng-click="anotherLogin()" style="font-weight:300;" class="button button-stable  button-block">another FB login</button>-->
 
+    <!--<div class="list">-->
 
+      <!--<div class="item item-input-inset" ng-show="show_phone_input">-->
+        <div ng-if="show_phone_input">
+        <label class="item-input-wrapper">
+          <input id="phone_number" type="tel" placeholder="Tell us your phone #">
+        </label>
+        <button class="button button-small button-calm" ng-click="assign_phone_and_proceed()">
+          Submit
+        </button>
+        </div>
+      <!--</div>-->
+
+    <!--</div>-->
 
 
   </ion-content>
 </ion-view>
+
