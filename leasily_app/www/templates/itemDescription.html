@@ -19,10 +19,10 @@
     <ion-list id="itemDescription-list8">
       <ion-item class="item-thumbnail-left" id="itemDescription-list-item26">
         <img src="{{item.renters_picture_url}}">
-        <h2>{{item.renters_name}}</h2>
+        <p>Tap here to see renter's Facebook profile page</p>
       </ion-item>
     </ion-list>
-    <a ui-sref="tabsController.chat({&quot;conversation_partner&quot;:&quot;&quot;+item.renters_name+&quot;&quot;})" id="itemDescription-button11" class="button button-positive  button-block icon-left ion-ios-chatboxes">Start chatting with the owner</a>
+    <!-- <a ui-sref="tabsController.chat({&quot;conversation_partner&quot;:&quot;&quot;+item.renters_name+&quot;&quot;})" id="itemDescription-button11" class="button button-positive  button-block icon-left ion-ios-chatboxes">Start chatting with the owner</a> -->
 
   <button class="button button-block button-royal" ng-click="rent_item()" >
     Rent an item for $0.50
@@ -37,7 +37,7 @@
             <p ng-show="ResponseData.paymentId">
               Payment Id: <strong>{{ResponseData.paymentId}}</strong>
             </p>
-          </div>
+    </div>
   </ion-content>
 </ion-view>
 
