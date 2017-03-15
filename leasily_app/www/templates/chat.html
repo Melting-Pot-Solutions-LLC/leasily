@@ -1,13 +1,19 @@
-<ion-view title="Chat" id="page10">
+<ion-view title="Chat with {{conversation_partner_name}}" id="page10">
   <ion-content padding="true" scroll="false" class="has-header">
     <ion-scroll id="chat-container2" scroll-glue="" class="top-container">
-      <ion-list id="chat-list9">
+      <!--<ion-list id="chat-list9">
         <ion-item class="item-avatar" id="chat-list-item8" ng-repeat="message in messages">
           <img src="{{message.author_picture_url}}">
           <h2>{{message.text}}</h2>
           <p>from {{message.author}}</p>
         </ion-item>
-      </ion-list>
+      </ion-list>-->
+
+       <ol class="messages">
+          <li ng-repeat="message in messages" ng-bind-html="'<p>' + message.text + '/p'"></li>
+        </ol>
+
+
     </ion-scroll>
     <form id="chat-form3" class="list bottom-form" ng-submit="addMessage()">
       <label class="item item-input" id="chat-input4">

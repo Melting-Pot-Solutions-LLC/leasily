@@ -7,7 +7,7 @@
 
 
 
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <!--<script type="text/javascript" src="https://js.stripe.com/v2/"></script>-->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
@@ -19,6 +19,7 @@
 
 
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/chat_styles.css" rel="stylesheet">
 
 
     <style type="text/css">
@@ -100,7 +101,8 @@
       <ion-content ng-controller="menuCtrl" padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient">
         <div class="spacer" data-componentid="spacer1" style="width: 268px; height: 63px;"></div>
         <div class="profile-image" data-componentid="image1">
-          <img src="{{user.profile_photo}}" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
+          <!--<img src="{{user.profile_photo}}" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">-->
+          <img src="img/user.png" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
         </div>
         <div id="menu-markdown1" style="text-align:center;" class="show-list-numbers-and-dots" data-componentid="markdown1">
           <p style="color:#FFFFFF;font-size:26px;">{{user.name}}</p>
@@ -109,8 +111,8 @@
         <ion-list id="menu-list1" data-componentid="list1">
           <ion-item class="item-icon-left  side-menu-item" id="menu-list-item6" ui-sref="tabsController.itemsYouCanBorrow" menu-close="" active-page-highlight="" data-componentid="list-item6">
             <i class="icon ion-ios-download"></i>Borrow an item</ion-item>
-          <!-- <ion-item class="item-icon-left  side-menu-item" id="menu-list-item9" ui-sref="chats" menu-close="" active-page-highlight="" data-componentid="list-item9">
-            <i class="icon ion-ios-chatboxes"></i>Chats</ion-item> -->
+           <ion-item class="item-icon-left  side-menu-item" id="menu-list-item9" ui-sref="chats" menu-close="" active-page-highlight="" data-componentid="list-item9">
+            <i class="icon ion-ios-chatboxes"></i>Chats</ion-item> 
           <ion-item class="item-icon-left  side-menu-item" id="menu-list-item7" ui-sref="lendANewItem" menu-close="" active-page-highlight="" data-componentid="list-item7">
             <i class="icon ion-ios-plus"></i>Lend a new item</ion-item>
           <ion-item class="item-icon-left  side-menu-item" id="menu-list-item33" ui-sref="aboutLeasily" menu-close="" active-page-highlight="" data-componentid="list-item33">

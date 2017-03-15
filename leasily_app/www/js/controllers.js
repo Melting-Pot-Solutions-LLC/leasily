@@ -91,9 +91,9 @@ var provider = new firebase.auth.FacebookAuthProvider();
 
     $rootScope.user =
     {
-        'name': '',
-        'email': '',
-        'profile_photo': 'https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png',
+        'name': 'Testing_user',
+        'email': 'Testing_email',
+        'profile_photo': 'img/user.png',
         'phone_number': '8030000000'
     }
 
@@ -143,34 +143,30 @@ var provider = new firebase.auth.FacebookAuthProvider();
 
   };
 
+  $scope.dummy_login = function()
+  {
+    $rootScope.user.name = "Steve Rubin";
+    $rootScope.user.email =  "dml1002313@yahoo.com";
+    $rootScope.user.profile_photo = "http://simpleicon.com/wp-content/uploads/user1.png";
+    update_db_and_go_further();
+
+
+  }
+
 
 var update_db_and_go_further = function()
 {
     console.log("went to update_db_and_go_further");
     var updates = {};
 
-    if($scope.show_phone_input)
+    var updates =
     {
-      var updates =
-                {
-                    'pictureURL': $rootScope.user.profile_photo,
-                    'email':  $rootScope.user.email,
-                    'name':  $rootScope.user.name,
-                    'phone_number':  $rootScope.user.phone_number
+        'pictureURL': $rootScope.user.profile_photo,
+        'email':  $rootScope.user.email,
+        'name':  $rootScope.user.name,
+    };                        
 
-                };
-    }
-    else
-    {
-      var updates =
-                {
-                    'pictureURL': $rootScope.user.profile_photo,
-                    'email':  $rootScope.user.email,
-                    'name':  $rootScope.user.name,
-                    
-
-                };
-    }
+    console.log("updates: " + JSON.stringify(updates));
     firebase.database().ref('/users/' + $rootScope.user.name).update(updates);
     $state.go('tabsController.itemsYouCanBorrow');
 }
@@ -412,7 +408,8 @@ function ($scope, $stateParams, Items_from_database, Users_from_database, $ionic
         $scope.modal = modal;
       });
       $scope.rent_item = function() {
-        $scope.modal.show();
+        // $scope.modal.show();
+        console.log("open a chat with that person");
       };
       $scope.closeModal = function() {
         $scope.modal.hide();
@@ -486,7 +483,7 @@ function ($scope, $stateParams, Items_from_database, Users_from_database, $ionic
 
 
 
-  $scope.submit_payment = function( payment ) {
+  /*$scope.submit_payment = function( payment ) {
 
 
         // Obtain your unique Mashape ID from here:
@@ -515,18 +512,6 @@ function ($scope, $stateParams, Items_from_database, Users_from_database, $ionic
           exp_year: payment.exp_year,
           test: true,
         };
-
-        // // Defines your checkout key
-        //  switch (TEST_MODE) {
-        //    case true:
-        //      //
-        //      StripeCheckoutProvider.defaults({key: NOODLIO_PAY_CHECKOUT_KEY['test']});
-        //      break
-        //    default:
-        //      //
-        //      StripeCheckoutProvider.defaults({key: NOODLIO_PAY_CHECKOUT_KEY['live']});
-        //      break
-        //  };
 
           // init for the DOM
           $scope.ResponseData = {
@@ -597,7 +582,7 @@ function ($scope, $stateParams, Items_from_database, Users_from_database, $ionic
           );
         };
         $scope.closeModal();
-  };
+  };*/
 
 
 }])
@@ -618,6 +603,8 @@ function ($scope, $stateParams, $firebaseArray, $rootScope) {
     {
         'message': ''
     }
+
+    $scope.conversation_partner_name = $stateParams.conversation_partner;
 
     var ref =  firebase.database().ref('users/' + $rootScope.user.name + '/dialogs/with ' + $stateParams.conversation_partner);
     var ref2 =  firebase.database().ref('users/' + $stateParams.conversation_partner + '/dialogs/with ' + $rootScope.user.name);
