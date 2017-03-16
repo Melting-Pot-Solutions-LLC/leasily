@@ -89,6 +89,8 @@ function ($scope, $stateParams, $rootScope, $state, $q, $ionicLoading, $timeout,
 
 var provider = new firebase.auth.FacebookAuthProvider();
 
+    $rootScope.showmenu = true;
+
     $rootScope.user =
     {
         'name': 'Testing_user',
@@ -592,7 +594,14 @@ function ($scope, $stateParams, Items_from_database, Users_from_database, $ionic
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $firebaseArray, $rootScope) {
 
-    alert($stateParams.conversation_partner);
+    // alert($stateParams.conversation_partner);
+    
+  $scope.$on('$ionicView.beforeEnter', function (e, data) {    
+    $scope.$root.showMenuIcon = false;
+  });
+
+  $rootScope.showmenu = false;
+
 
     // $rootScope.user.name = result.user.displayName;
     // $rootScope.user.profile_photo = result.user.photoURL;

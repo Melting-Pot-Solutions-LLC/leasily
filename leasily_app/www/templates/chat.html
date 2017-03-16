@@ -1,4 +1,6 @@
 <ion-view title="Chat with {{conversation_partner_name}}" id="page10">
+
+
   <ion-content padding="true" scroll="false" class="has-header">
     <ion-scroll id="chat-container2" scroll-glue="" class="top-container">
       <!--<ion-list id="chat-list9">
@@ -16,13 +18,21 @@
 
     </ion-scroll>
     <form id="chat-form3" class="list bottom-form" ng-submit="addMessage()">
-      <label class="item item-input" id="chat-input4">
+      <!--<label class="item item-input" id="chat-input4">
         <span class="input-label">Message</span>
-        <input type="text" placeholder="" ng-model="data.message">
+        <input type="text" placeholder="Type your message" ng-model="data.message">
       </label>
       <div style="margin-right:-20px;">
         <button id="chat-button12" style="left:-10px;" class="button button-positive  button-full">Submit</button>
-      </div>
+      </div>-->
+      <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+      </label>
+      <button class="button button-clear" ng-click="addMessage()">
+        Send
+      </button>
+    </ion-footer-bar>
     </form>
   </ion-content>
 </ion-view>

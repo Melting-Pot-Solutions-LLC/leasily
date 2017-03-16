@@ -58,6 +58,7 @@
   <allow-navigation href="http://10.34.163.198:8100"/>
   <allow-navigation href="http://10.34.36.144:8100"/>
   <allow-navigation href="http://10.34.36.144"/>
+  <allow-navigation href="http://10.30.155.179:8100"/>
   <allow-intent href="http://10.34.36.144:8100"/>
   <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
     <variable name="APP_ID" value="739118569598109"/>
