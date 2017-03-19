@@ -80,6 +80,33 @@ function ($scope, $stateParams) {
         });
     }
 
+    $scope.send_email = function()
+    {
+      console.log("trying to send an email");
+      if(window.plugins && window.plugins.emailComposer)
+      {
+        window.plugins.emailComposer.showEmailComposerWithCallback(
+          function(result)
+          {
+            console.log("email has bee successfullt sent");
+            console.log(result);
+          },
+          "Reaching out to Leasily developers",
+          "",
+          ["konstantinrubin@engineer.com"],
+          null,
+          null,
+          false,
+          null,
+          null);
+      }
+      else
+      {
+        console.log("failed to find email plugin");
+      }
+
+    }
+
 }])
 
 .controller('loginCtrl', ['$scope', '$stateParams', '$rootScope', '$state', '$ionicModal',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -106,7 +133,7 @@ var provider = new firebase.auth.FacebookAuthProvider();
      console.log('button pressed');
       facebookConnectPlugin.getLoginStatus(function(success)
       {
-        if(success.status === 'connected'){
+        if(success.status == 'connected'){
         
           console.log('getLoginStatus - ', success.status);
           facebookConnectPlugin.api('/me?fields=email,name,picture.width(720).height(720)&access_token=' + success.authResponse.accessToken, null,
@@ -128,8 +155,8 @@ var provider = new firebase.auth.FacebookAuthProvider();
       else 
       {
         console.log('getLoginStatus', success.status);
-        $scope.show_phone_input = true;
-        console.log('show_phone_input - ', $scope.show_phone_input);
+        // $scope.show_phone_input = true;
+        // console.log('show_phone_input - ', $scope.show_phone_input);
         facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
 
       }
@@ -403,22 +430,22 @@ function ($scope, $stateParams, Items_from_database, Users_from_database, $ionic
 {
 
 
-    $ionicModal.fromTemplateUrl('my-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $scope.modal = modal;
-      });
+    // $ionicModal.fromTemplateUrl('my-modal.html', {
+    //     scope: $scope,
+    //     animation: 'slide-in-up'
+    //   }).then(function(modal) {
+    //     $scope.modal = modal;
+    //   });
       $scope.rent_item = function() {
         // $scope.modal.show();
         console.log("open a chat with that person");
       };
       $scope.closeModal = function() {
-        $scope.modal.hide();
+        // $scope.modal.hide();
       };
       // Cleanup the modal when we're done with it!
       $scope.$on('$destroy', function() {
-        $scope.modal.remove();
+        // $scope.modal.remove();
       });
       // Execute action on hide modal
       $scope.$on('modal.hidden', function() {
@@ -600,7 +627,11 @@ function ($scope, $stateParams, $firebaseArray, $rootScope) {
     $scope.$root.showMenuIcon = false;
   });
 
-  $rootScope.showmenu = false;
+//   if(window.cordova && window.cordova.plugins.Keyboard) {
+//   window.cordova.plugins.Keyboard.disableScroll(true);
+// }
+
+
 
 
     // $rootScope.user.name = result.user.displayName;
@@ -624,6 +655,7 @@ function ($scope, $stateParams, $firebaseArray, $rootScope) {
     $scope.addMessage = function()
     {
         console.log('button pressed!');
+        console.log($scope.data.message);
         var message_to_push =
         {
             text: $scope.data.message,

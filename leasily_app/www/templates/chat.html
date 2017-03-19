@@ -2,7 +2,7 @@
 
 
   <ion-content padding="true" scroll="false" class="has-header">
-    <ion-scroll id="chat-container2" scroll-glue="" class="top-container">
+    <ion-scroll id="chat-container2" scroll-glue class="top-container" style="height:100%">
       <!--<ion-list id="chat-list9">
         <ion-item class="item-avatar" id="chat-list-item8" ng-repeat="message in messages">
           <img src="{{message.author_picture_url}}">
@@ -11,9 +11,11 @@
         </ion-item>
       </ion-list>-->
 
+      <ion-list id="chat-list9" style="height:100%">
        <ol class="messages">
-          <li ng-repeat="message in messages" ng-bind-html="'<p>' + message.text + '/p'"></li>
+          <li ng-repeat="message in messages" ng-bind-html="'<p>' + message.text + '</p>'"></li>
         </ol>
+      </ion-list>
 
 
     </ion-scroll>
@@ -26,12 +28,19 @@
         <button id="chat-button12" style="left:-10px;" class="button button-positive  button-full">Submit</button>
       </div>-->
       <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+      <!--<label class="item item-input item-input-wrapper" style="width: 80%" id="chat-input4">
+        <input type="text" placeholder="Type your message here" on-return="closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+      </label>-->
+
       <label class="item-input-wrapper">
-        <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
-      </label>
-      <button class="button button-clear" ng-click="addMessage()">
+    <input type="text" placeholder="Type your message here" ng-model="data.message">
+  </label>
+  <button class="button button-clear">
+    Send
+  </button>
+      <!--<button class="button button-clear" style="width: 20%" id="chat-button12">
         Send
-      </button>
+      </button>-->
     </ion-footer-bar>
     </form>
   </ion-content>

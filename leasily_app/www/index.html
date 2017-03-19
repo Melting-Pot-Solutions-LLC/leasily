@@ -101,8 +101,7 @@
       <ion-content ng-controller="menuCtrl" padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient">
         <div class="spacer" data-componentid="spacer1" style="width: 268px; height: 63px;"></div>
         <div class="profile-image" data-componentid="image1">
-          <!--<img src="{{user.profile_photo}}" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">-->
-          <img src="img/user.png" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
+          <img src="{{user.profile_photo}}" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
         </div>
         <div id="menu-markdown1" style="text-align:center;" class="show-list-numbers-and-dots" data-componentid="markdown1">
           <p style="color:#FFFFFF;font-size:26px;">{{user.name}}</p>
@@ -117,7 +116,8 @@
             <i class="icon ion-ios-plus"></i>Lend a new item</ion-item>
           <ion-item class="item-icon-left  side-menu-item" id="menu-list-item33" ui-sref="aboutLeasily" menu-close="" active-page-highlight="" data-componentid="list-item33">
             <i class="icon ion-ios-information"></i>About</ion-item>
-          <ion-item class="item-icon-left  side-menu-item" id="menu-list-item11" href="mailto:konstantinrubin@engineer.com" active-page-highlight="" data-componentid="list-item11">
+          <ion-item class="item-icon-left  side-menu-item" id="menu-list-item11" active-page-highlight="" data-componentid="list-item11" 
+          ng-click="send_email()">
             <i class="icon ion-ios-email"></i>Contact us</ion-item>
           <ion-item class="item-icon-left  side-menu-item" id="menu-list-item5" ui-sref="login" menu-close="" active-page="" ng-click="logout()" data-componentid="list-item5">
             <i class="icon ion-ios-undo"></i>Logout</ion-item>

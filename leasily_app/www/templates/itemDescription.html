@@ -18,13 +18,15 @@
     <h3 id="itemDescription-heading10" style="color:#000000;text-align:center;">About the renter</h3>
     <ion-list id="itemDescription-list8">
       <ion-item class="item-thumbnail-left" id="itemDescription-list-item26">
+
         <img src="{{item.renters_picture_url}}">
+        <h3>{{item.renters_name}}</h3>
         <p>Tap here to see renter's Facebook profile page</p>
       </ion-item>
     </ion-list>
     <!-- <a ui-sref="tabsController.chat({&quot;conversation_partner&quot;:&quot;&quot;+item.renters_name+&quot;&quot;})" id="itemDescription-button11" class="button button-positive  button-block icon-left ion-ios-chatboxes">Start chatting with the owner</a> -->
 
-  <button class="button button-block button-royal" ng-click="rent_item()" >
+  <button class="button button-block button-royal" ui-sref="tabsController.chat_tab1({&quot;conversation_partner&quot;:&quot;&quot;+item.renters_name+&quot;&quot;})" >
     Chat with the owner
   </button>
   <!--<div class="padding center">
